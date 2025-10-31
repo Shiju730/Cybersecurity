@@ -1,11 +1,9 @@
 from scapy.all import sniff, IP, TCP, UDP
 
 def packet_callback(packet):
-    # Show full packet structure
-    print("\n🔍 Full Packet Structure:")
+    print("\n Full Packet Structure:")
     packet.show()
-
-    # Optional: Keep your custom summary too
+    
     if IP in packet:
         ip_layer = packet[IP]
         src_ip = ip_layer.src
@@ -23,5 +21,4 @@ def packet_callback(packet):
 
         print(f"    Payload: {bytes(packet.payload)}")
 
-# Run the sniffer (add timeout or count if needed)
 sniff(prn=packet_callback, store=False, timeout=30)
